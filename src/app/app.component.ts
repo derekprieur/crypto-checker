@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { CurrencyService } from './service/currency.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'crypto-checker';
+  selectedCurrency: string = "USD"
+  constructor(private currencyService: CurrencyService, private router: Router) {
+
+  }
+
+  sendCurrency(event: string) {
+    console.log(event)
+    this.currencyService.setCurrency(event)
+  }
+
+  goToHome() {
+    this.router.navigate([''])
+  }
 }
